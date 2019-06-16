@@ -22,11 +22,24 @@ exports.list = (req, res) => {
 
 exports.findOne = (req, res) => {
   Artist.findById(req.params.artistId, (err, artist) => {
-    if (artist === null) {
+    if (artist === undefined) {
       res.status(404).json({
         error: 'The artist could not be found.',
       });
     } else {
+      res.status(200).json(artist);
+    }
+  });
+};
+
+exports.patch = (req, res) => {
+  Artist.findById(req.params.artistId, (err, artist) => {
+    if (artist === undefined) {
+      res.status(404).json({
+        error: 'The artist could not be found.',
+      });
+    } else {
+      artist.set(req.body).save();
       res.status(200).json(artist);
     }
   });
