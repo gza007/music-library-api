@@ -89,7 +89,7 @@ describe('/artists', () => {
     });
 
     describe('PATCH /artists/:artistId', () => {
-      it('updates artist record by id', (done) => {
+      it('updates artist record by id (genre)', (done) => {
         const artist = artists[0];
         chai.request(server)
           .patch(`/artists/${artist._id}`)
@@ -98,7 +98,24 @@ describe('/artists', () => {
             expect(err).to.equal(null);
             expect(res.status).to.equal(200);
             Artist.findById(artist._id, (err, updatedArtist) => {
+              expect(updatedArtist.name).to.equal(artist.name);
               expect(updatedArtist.genre).to.equal('Psychedelic Rock');
+              done();
+            });
+          });
+      });
+
+      it('updates artist record by id (name)', (done) => {
+        const artist = artists[0];
+        chai.request(server)
+          .patch(`/artists/${artist._id}`)
+          .send({ name: 'Jimi Hendrix' })
+          .end((err, res) => {
+            expect(err).to.equal(null);
+            expect(res.status).to.equal(200);
+            Artist.findById(artist._id, (err, updatedArtist) => {
+              expect(updatedArtist.name).to.equal('Jimi Hendrix');
+              expect(updatedArtist.genre).to.equal(artist.genre);
               done();
             });
           });
