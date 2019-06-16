@@ -10,3 +10,12 @@ exports.create = (req, res) => {
     res.json(data);
   });
 };
+
+exports.list = (req, res) => {
+  Artist.find({}, (err, artists) => {
+    if (err) {
+      res.json('Something went wrong');
+    }
+    res.json(artists);
+  });
+};
