@@ -16,6 +16,18 @@ exports.list = (req, res) => {
     if (err) {
       res.json('Something went wrong');
     }
-    res.json(artists);
+    res.status(200).json(artists);
+  });
+};
+
+exports.findOne = (req, res) => {
+  Artist.findById(req.params.artistId, (err, artist) => {
+    if (artist === null) {
+      res.status(404).json({
+        error: 'The artist could not be found.',
+      });
+    } else {
+      res.status(200).json(artist);
+    }
   });
 };
