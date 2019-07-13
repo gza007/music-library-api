@@ -5,9 +5,8 @@ exports.create = (req, res) => {
     name: req.body.name,
     genre: req.body.genre,
   });
-  artist.save((error, data) => {
-    res.status(201);
-    res.json(data);
+  artist.save().then((data) => {
+    res.status(201).json(data);
   });
 };
 
