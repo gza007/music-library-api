@@ -1,6 +1,10 @@
 # Music API Test Suite
 
-This repository contains the integration test suite for Music Library API challenge.
+API for a Music Library.
+
+## Uses
+- MongoDB
+- Heroku
 
 ### Install
 - Clone this repository
