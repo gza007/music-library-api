@@ -26,5 +26,7 @@ This API was deployed to Heroku.
 
 ### GET Request
 - Use Postman, or simply visit: https://music-lib-api.herokuapp.com/artists
+- Use Postman to make a GET request for partci
 
-
+### GET(by ID), Delete and Patch
+-Use Postman, and make request to https://music-lib-api.herokuapp.com/artists/:artistId
